@@ -1,0 +1,34 @@
+$font-stack: Halvar, Arial, Helvetica, sans-serif;
+$font-big: 28px;
+$primary-color: #fff;
+$max-width: 680px;
+
+.main {
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtitle {
+  font-family: $font-stack;
+  font-size: $font-big;
+  font-weight: 200;
+  color: $primary-color;
+  text-align: center;
+}
+
+.line {
+  border-left: 1px solid red;
+  height: 100%;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,88 @@
+$font-stack: Halvar, Arial, Helvetica, sans-serif;
+
+.input {
+  width: 288px;
+  height: 48px;
+  border: none;
+  background-color: #1f2235;
+  visibility: hidden;
+  &::after {
+    width: 250px;
+    height: 35px;
+    background-color: #1f2235;
+  }
+  &:checked + .label {
+    left: 156px;
+    width: 128px;
+  }
+}
+
+.main {
+  width: 288px;
+  height: 48px;
+  background-color: #1f2235;
+  position: relative;
+  border-radius: 14px;
+  font-family: $font-stack;
+  cursor: pointer;
+  &::before {
+    content: "Физ. лицо";
+    position: absolute;
+    color: #ffffff;
+    top: 12px;
+    left: 16px;
+    z-index: 2;
+    font-size: 18px;
+  }
+  &:after {
+    content: "Юр. лицо";
+    position: absolute;
+    color: #676c7a;
+    top: 12px;
+    right: 18px;
+    z-index: 0;
+    font-size: 18px;
+  }
+}
+
+.main-checked {
+  width: 288px;
+  height: 48px;
+  cursor: pointer;
+  background-color: #1f2235;
+  position: relative;
+  border-radius: 14px;
+  font-family: $font-stack;
+  &::after {
+    content: "Юр. лицо";
+    position: absolute;
+    color: #ffffff;
+    top: 12px;
+    right: 18px;
+    z-index: 2;
+    font-size: 18px;
+  }
+  &::before {
+    content: "Физ. лицо";
+    position: absolute;
+    color: #676c7a;
+    top: 12px;
+    left: 16px;
+    z-index: 0;
+    font-size: 18px;
+  }
+}
+
+.label {
+  display: block;
+  width: 132px;
+  height: 40px;
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  z-index: 1;
+  background: #ab81f1;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}

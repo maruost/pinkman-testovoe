@@ -1,0 +1,17 @@
+$font-stack: Halvar, sans-serif;
+$primary-color: #fff;
+$max-width: 680px;
+
+.board {
+  max-width: $max-width;
+  margin-top: 40px;
+  background-color: #06091f;
+}
+
+.title {
+  color: $primary-color;
+  font-family: $font-stack;
+  font-weight: 500;
+  font-size: 53px;
+  margin: 0 auto;
+}

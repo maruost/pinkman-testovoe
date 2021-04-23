@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Halvar";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./halvar/Halvar\ Breitschrift\ Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Halvar";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./halvar/Halvar\ Breitschrift\ Thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Halvar";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./halvar/Halvar\ Breitschrift\ Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Halvar";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./halvar/Halvar\ Breitschrift\ Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Halvar";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./halvar/Halvar\ Breitschrift\ Hairline.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PT-Root";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./pt-root/PT\ Root\ UI_Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PT-Root";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./pt-root/PT\ Root\ UI_Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PT-Root";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./pt-root/PT\ Root\ UI_Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PT-Root";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./pt-root/PT\ Root\ UI_Bold.ttf") format("truetype");
+}
