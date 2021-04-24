@@ -1,41 +1,36 @@
 import React, { useState } from "react";
+import Checkbox from "../Checkbox/Checkbox";
 import Input from "../Input/Input";
 import s from "./InfoBox.module.scss";
 
-function InfoBox({ ...props }) {
-  const [inputValues, setInputValues] = useState({});
-
-  const handleInputChange = (value) => {
-    setInputValues({
-      ...inputValues,
-      ...value,
-    });
-    console.log(inputValues);
-  };
-
+function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setIndividualFields = () => {
     return (
       <>
         <Input
-          name="initials"
+          name="name"
           label="ФИО"
           type="text"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
+          minLength={2}
         />
         <Input
-          name="birthday"
+          name="dob"
           label="Дата рождения"
           type="date"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
         />
         <Input
-          name="telNum"
+          name="phone"
           label="Номер телефона"
-          type="phone"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          type="tel"
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
         />
       </>
     );
@@ -45,25 +40,28 @@ function InfoBox({ ...props }) {
     return (
       <>
         <Input
-          name="company"
+          name="cName"
           label="Название компании"
           type="text"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
         />
         <Input
-          name="job"
+          name="pos"
           label="Ваша должность"
           type="text"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
         />
         <Input
-          name="telNum"
+          name="phone"
           label="Номер телефона"
-          type="phone"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          type="tel"
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
         />
       </>
     );
@@ -83,29 +81,30 @@ function InfoBox({ ...props }) {
           name="eventDate"
           label="Дата мероприятия"
           type="date"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
+          required
         />
-        <Input
-          name="parking"
+        <Checkbox
+          name="opt1"
           label="Нужна парковка"
           type="checkbox"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
         />
-        <Input
-          name="handout"
+        <Checkbox
+          name="opt2"
           label="Хочу получать раздаточный материал"
           type="checkbox"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
         />
-        <Input
-          name="maintainer"
+        <Checkbox
+          name="opt3"
           label="Нужна помощь сопровождающего"
           type="checkbox"
-          onChange={handleInputChange}
-          inputValues={inputValues}
+          onHandleInputChange={onHandleInputChange}
+          errors={errors}
         />
       </>
     );
