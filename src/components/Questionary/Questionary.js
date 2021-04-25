@@ -5,6 +5,7 @@ import InfoBox from "../InfoBox/InfoBox";
 import Button from "../Button/Button";
 import FormValidator from "../FormValidator/FormValidator";
 import Api from "../Api/Api";
+import Preloader from "../Preloader/Preloader";
 
 function Questionary({ ...props }) {
   const [isUserEntity, setisUserEntity] = useState(false);
@@ -84,8 +85,9 @@ function Questionary({ ...props }) {
             isInputBlocked={isInputBlocked}
           />
         </div>
-        <Button type="submit" isValid={isValid}>
-          Отправить заявку
+        {isInputBlocked ? <Preloader /> : null}
+        <Button type="submit" isValid={isValid} isBlocked={isInputBlocked}>
+          {isInputBlocked ? "Идёт отправка..." : "Отправить заявку"}
         </Button>
       </form>
     </div>

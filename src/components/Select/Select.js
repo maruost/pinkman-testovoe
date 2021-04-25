@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import s from "./Select.module.scss";
 import arrUpIcon from "../../static/images/icons/input-arr-up.svg";
 import arrIcon from "../../static/images/icons/input-arr.svg";
+import Preloader from "../Preloader/Preloader";
 
 function Select({ ...props }) {
   const [value, setValue] = useState("");
@@ -43,7 +44,7 @@ function Select({ ...props }) {
       ));
       return arr;
     } else {
-      return "loading...";
+      return <Preloader />;
     }
   };
 

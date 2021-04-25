@@ -3,6 +3,7 @@ import Checkbox from "../Checkbox/Checkbox";
 import Input from "../Input/Input";
 import s from "./InfoBox.module.scss";
 import Select from "../Select/Select";
+import DateInput from "../DateInput/DateInput";
 
 function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setIndividualFields = () => {
@@ -20,7 +21,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
         />
-        <Input
+        <DateInput
           name="dob"
           label="Дата рождения"
           type="date"

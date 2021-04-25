@@ -4,8 +4,12 @@ import s from "./Button.module.scss";
 function Button({ ...props }) {
   return (
     <button
-      className={props.isValid ? s.button : `${s.button} ${s.inactive}`}
-      disabled={props.isValid ? false : true}
+      className={
+        props.isValid && !props.isBlocked
+          ? s.button
+          : `${s.button} ${s.inactive}`
+      }
+      disabled={props.isValid && !props.isBlocked ? false : true}
       {...props}
     ></button>
   );
