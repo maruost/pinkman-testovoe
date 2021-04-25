@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./WelcomeBoard.module.scss";
 
 function WeclomeBoard({ children }) {

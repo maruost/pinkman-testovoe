@@ -1,14 +1,19 @@
-import React, { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import s from "./App.module.scss";
 import WelcomeBoard from "../WelcomeBoard/WeclomeBoard";
 import Questionary from "../Questionary/Questionary";
 import AuthPage from "../AuthPage/AuthPage";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [isUserEntity, setisUserEntity] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const history = useHistory();
+
+  useEffect(() => {
+    localStorage.getItem("token") ? setLoggedIn(true) : setLoggedIn(false);
+    history.push("/questionary");
+  }, []);
 
   const handleUserType = (input) => {
     setisUserEntity(input);

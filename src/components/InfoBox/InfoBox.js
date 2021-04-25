@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Checkbox from "../Checkbox/Checkbox";
 import Input from "../Input/Input";
 import s from "./InfoBox.module.scss";
+import Select from "../Select/Select";
 
 function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setIndividualFields = () => {
@@ -77,13 +78,12 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setEventFields = () => {
     return (
       <>
-        <Input
-          name="eventDate"
+        <Select
           label="Дата мероприятия"
-          type="date"
+          type="text"
+          name="eventId"
           onHandleInputChange={onHandleInputChange}
-          errors={errors}
-          required
+          events={props.events}
         />
         <Checkbox
           name="opt1"

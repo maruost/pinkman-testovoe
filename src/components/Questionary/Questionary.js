@@ -1,14 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import s from "./Questionary.module.scss";
 import Slider from "../Slider/Slider";
 import InfoBox from "../InfoBox/InfoBox";
 import Button from "../Button/Button";
 import FormValidator from "../FormValidator/FormValidator";
+import Api from "../Api/Api";
 
 function Questionary({ ...props }) {
   const [inputValues, setInputValues] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const [events, setEvents] = useState({});
   const { setErrorMessage, errors } = FormValidator();
+  const { getEvents } = Api();
+
+  console.log(events);
+
+  useEffect(() => {
+    setEvents({});
+    getEvents()
+      .then((data) => {
+        console.log(data);
+        setEvents(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const formRef = useRef(null);
 
@@ -22,6 +37,7 @@ function Questionary({ ...props }) {
       ...inputValues,
       [target.name]: value,
     });
+    console.log(inputValues);
     setErrorMessage(target, target.name);
     setIsValid(formRef.current.checkValidity());
   };
@@ -41,6 +57,7 @@ function Questionary({ ...props }) {
             isUserEntity={props.isUserEntity}
             onHandleInputChange={handleInputChange}
             errors={errors}
+            inputValues={inputValues}
           />
           <span className={s.line} />
           <InfoBox
@@ -49,6 +66,8 @@ function Questionary({ ...props }) {
             isUserEntity={props.isUserEntity}
             onHandleInputChange={handleInputChange}
             errors={errors}
+            inputValues={inputValues}
+            events={events}
           />
         </div>
         <Button type="submit" isValid={isValid}>
