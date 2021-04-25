@@ -30,7 +30,20 @@ function Api() {
     }).then((res) => checkStatus(res));
   };
 
-  return { signin, getEvents };
+  const sendRequest = (data) => {
+    return fetch("http://pink-code.ru:20085/request", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        ...data,
+      }),
+    }).then((res) => checkStatus(res));
+  };
+
+  return { signin, getEvents, sendRequest };
 }
 
 export default Api;

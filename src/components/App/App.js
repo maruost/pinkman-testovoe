@@ -6,7 +6,7 @@ import Questionary from "../Questionary/Questionary";
 import AuthPage from "../AuthPage/AuthPage";
 
 function App() {
-  const [isUserEntity, setisUserEntity] = useState(false);
+  // const [isUserEntity, setisUserEntity] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
 
@@ -15,9 +15,9 @@ function App() {
     history.push("/questionary");
   }, []);
 
-  const handleUserType = (input) => {
-    setisUserEntity(input);
-  };
+  // const handleUserType = (input) => {
+  //   setisUserEntity(input);
+  // };
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -29,10 +29,7 @@ function App() {
         <Route path="/questionary">
           {loggedIn ? (
             <WelcomeBoard>
-              <Questionary
-                onHandleUserType={handleUserType}
-                isUserEntity={isUserEntity}
-              />
+              <Questionary />
             </WelcomeBoard>
           ) : (
             <Redirect to="/login" />

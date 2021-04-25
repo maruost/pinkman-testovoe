@@ -1,20 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import s from "./Select.module.scss";
+import arrUpIcon from "../../static/images/icons/input-arr-up.svg";
+import arrIcon from "../../static/images/icons/input-arr.svg";
 
 function Select({ ...props }) {
   const [value, setValue] = useState("");
-  const [id, setId] = useState("");
-  const [events, setEvents] = useState({});
+  const [id, setId] = useState(null);
+  const [isOpened, setIsOpened] = useState(false);
   const inputRef = useRef();
+
+  const handleSubmit = () => {
+    props.onHandleInputChange(inputRef.current, id);
+  };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [id]);
+
+  useEffect(() => {
+    setValue("");
+    setId(null);
+  }, [props.isUserEntity]);
+
   const handleClick = (e) => {
     const content = e.target.textContent;
     const id = e.target.id;
     setValue(content);
     setId(id);
   };
-  useEffect(() => {
-    props.onHandleInputChange(inputRef.current, id);
-  }, [id]);
 
   const renderOptions = (data) => {
     if (data) {
@@ -34,20 +47,36 @@ function Select({ ...props }) {
     }
   };
 
+  const toggleList = () => {
+    return props.blocked ? null : setIsOpened(!isOpened);
+  };
+
   return (
-    <div className={s.select}>
+    <div className={s.select} onClick={toggleList}>
       <input
         className={s.input}
         id={props.name}
         {...props}
-        readOnly={true}
+        disabled={true}
         value={value}
         ref={inputRef}
       />
-      <label htmlFor={props.name} className={s["label-input"]}>
+      <img className={s.icon} src={isOpened ? arrUpIcon : arrIcon} alt="icon" />
+      <label
+        htmlFor={props.name}
+        className={s["label-input"]}
+        style={
+          value !== "" ? { fontSize: "10px", top: "4px" } : { fontSize: "14px" }
+        }
+      >
         {props.label}
       </label>
-      <div className={s.labels}>{renderOptions(props.events.eventsDate)}</div>
+      <div
+        className={s.labels}
+        style={isOpened ? { display: "block" } : { display: "none" }}
+      >
+        {renderOptions(props.events.eventsDate)}
+      </div>
     </div>
   );
 }

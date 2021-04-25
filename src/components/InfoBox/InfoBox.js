@@ -16,6 +16,9 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           errors={errors}
           required
           minLength={2}
+          isUserEntity={props.isUserEntity}
+          disabled={props.isInputBlocked}
+          inputValues={props.inputValues}
         />
         <Input
           name="dob"
@@ -23,7 +26,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           type="date"
           onHandleInputChange={onHandleInputChange}
           errors={errors}
+          isUserEntity={props.isUserEntity}
           required
+          disabled={props.isInputBlocked}
+          inputValues={props.inputValues}
         />
         <Input
           name="phone"
@@ -31,7 +37,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           type="tel"
           onHandleInputChange={onHandleInputChange}
           errors={errors}
+          isUserEntity={props.isUserEntity}
           required
+          disabled={props.isInputBlocked}
+          inputValues={props.inputValues}
         />
       </>
     );
@@ -46,7 +55,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           type="text"
           onHandleInputChange={onHandleInputChange}
           errors={errors}
+          isUserEntity={props.isUserEntity}
           required
+          disabled={props.isInputBlocked}
+          inputValues={props.inputValues}
         />
         <Input
           name="pos"
@@ -54,7 +66,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           type="text"
           onHandleInputChange={onHandleInputChange}
           errors={errors}
+          isUserEntity={props.isUserEntity}
           required
+          disabled={props.isInputBlocked}
+          inputValues={props.inputValues}
         />
         <Input
           name="phone"
@@ -62,7 +77,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           type="tel"
           onHandleInputChange={onHandleInputChange}
           errors={errors}
+          isUserEntity={props.isUserEntity}
           required
+          disabled={props.isInputBlocked}
+          inputValues={props.inputValues}
         />
       </>
     );
@@ -83,28 +101,40 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           type="text"
           name="eventId"
           onHandleInputChange={onHandleInputChange}
+          isUserEntity={props.isUserEntity}
           events={props.events}
+          inputValues={props.inputValues}
+          blocked={props.isInputBlocked}
         />
         <Checkbox
           name="opt1"
           label="Нужна парковка"
           type="checkbox"
           onHandleInputChange={onHandleInputChange}
+          isUserEntity={props.isUserEntity}
           errors={errors}
+          inputValues={props.inputValues}
+          disabled={props.isInputBlocked}
         />
         <Checkbox
           name="opt2"
           label="Хочу получать раздаточный материал"
           type="checkbox"
           onHandleInputChange={onHandleInputChange}
+          isUserEntity={props.isUserEntity}
           errors={errors}
+          inputValues={props.inputValues}
+          disabled={props.isInputBlocked}
         />
         <Checkbox
           name="opt3"
           label="Нужна помощь сопровождающего"
           type="checkbox"
           onHandleInputChange={onHandleInputChange}
+          isUserEntity={props.isUserEntity}
           errors={errors}
+          inputValues={props.inputValues}
+          disabled={props.isInputBlocked}
         />
       </>
     );
