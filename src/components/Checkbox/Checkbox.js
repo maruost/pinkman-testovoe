@@ -1,9 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import s from "./Checkbox.module.scss";
 
 function Checkbox({ ...props }) {
   const handleChange = (e) => {
-    props.onHandleInputChange(e.target, Number(e.target.checked));
+    props.onHandleInputChange(e.target, {
+      option: props.label,
+      [props.name]: Number(e.target.checked),
+    });
   };
 
   return (

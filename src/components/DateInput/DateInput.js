@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import s from "./DateInput.module.scss";
-import calendarIcon from "../../static/images/icons/calendar.svg";
 
 function DateInput({ ...props }) {
-  const [dob, setDob] = useState("");
-  const inputRef = useRef();
   const handleChange = (e) => {
-    setDob(e.target.value);
     props.onHandleInputChange(e.target, e.target.value);
   };
 
@@ -14,12 +10,13 @@ function DateInput({ ...props }) {
     <div className={s.box}>
       <div className={s["input-box"]}>
         <input
-          ref={inputRef}
           {...props}
           className={s.input}
           onChange={handleChange}
           id={props.name}
-          value={dob}
+          value={
+            props.inputValues[props.name] ? props.inputValues[props.name] : ""
+          }
         />
         <label htmlFor={props.name} className={s["label-input"]}>
           {props.label}

@@ -11,7 +11,6 @@
   opacity: 0;
   &:checked + .label::before {
     content: url("../../static/images/icons/check.svg");
-    background-position: -110% 50%;
   }
 }
 
@@ -40,4 +39,5 @@
   margin: 4px 0 0;
   color: #f6483d;
   font-size: 12px;
+  box-sizing: border-box;
 }

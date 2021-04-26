@@ -5,6 +5,9 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import FormValidator from "../FormValidator/FormValidator";
 import Api from "../Api/Api";
+import PasswordInput from "../PasswordInput/PasswordInput";
+import Preloader from "../Preloader/Preloader";
+import serverError from "../constants/serverMessages";
 
 function AuthPage({ ...props }) {
   const formRef = useRef(null);
@@ -13,17 +16,25 @@ function AuthPage({ ...props }) {
   const { setErrorMessage, errors } = FormValidator();
   const history = useHistory();
   const { signin } = Api();
+  const [serverMsg, setServerMsg] = useState({ data: "", request: "" });
+  const [isInputBlocked, setIsInputBlocked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputValues);
+    setIsInputBlocked(true);
     signin(inputValues)
       .then((data) => {
+        setIsInputBlocked(false);
         localStorage.setItem("token", data.token);
         props.handleLogin();
         history.push("/questionary");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setIsInputBlocked(false);
+        const error = serverError(err);
+        setServerMsg({ ...serverMsg, entry: error });
+      });
   };
 
   const handleInputChange = (target, value) => {
@@ -46,20 +57,25 @@ function AuthPage({ ...props }) {
             label="E-mail"
             onHandleInputChange={handleInputChange}
             required
+            blocked={isInputBlocked}
           />
-          <Input
-            errors={errors}
+          <PasswordInput
             type="password"
             name="password"
             label="Пароль"
             onHandleInputChange={handleInputChange}
             required
-            minLength={8}
+            blocked={isInputBlocked}
           />
         </div>
-        <Button type="submit" isValid={isValid}>
-          Отправить заявку
+        <Button type="submit" isValid={isValid} isBlocked={isInputBlocked}>
+          {isInputBlocked ? "Заходим..." : "Войти"}
         </Button>
+        {isInputBlocked ? (
+          <Preloader />
+        ) : (
+          <p className={s.error}>{serverMsg.entry}</p>
+        )}
       </form>
     </div>
   );

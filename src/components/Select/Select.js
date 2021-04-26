@@ -6,28 +6,29 @@ import Preloader from "../Preloader/Preloader";
 
 function Select({ ...props }) {
   const [value, setValue] = useState("");
-  const [id, setId] = useState(null);
   const [isOpened, setIsOpened] = useState(false);
   const inputRef = useRef();
 
-  const handleSubmit = () => {
-    props.onHandleInputChange(inputRef.current, id);
+  const eventsData = props.events.eventsDate;
+
+  const getEventName = () => {
+    if (props.inputValues[props.name]) {
+      const eventObj = props.inputValues[props.name];
+      const eventName = eventObj.label;
+      return eventName;
+    } else {
+      return "";
+    }
   };
 
-  useEffect(() => {
-    handleSubmit();
-  }, [id]);
-
-  useEffect(() => {
-    setValue("");
-    setId(null);
-  }, [props.isUserEntity]);
-
   const handleClick = (e) => {
-    const content = e.target.textContent;
-    const id = e.target.id;
-    setValue(content);
-    setId(id);
+    setValue(e.target.textContent);
+    props.onHandleInputChange(inputRef.current, {
+      [props.name]: e.target.id,
+      label: e.target.textContent,
+    });
+    setIsOpened(!isOpened);
+    inputRef.current.blur();
   };
 
   const renderOptions = (data) => {
@@ -36,6 +37,7 @@ function Select({ ...props }) {
         <label
           className={s.label}
           htmlFor={props.name}
+          key={opt.id}
           id={opt.id}
           onClick={handleClick}
         >
@@ -44,7 +46,15 @@ function Select({ ...props }) {
       ));
       return arr;
     } else {
-      return <Preloader />;
+      return (
+        <div className={s.box}>
+          {props.serverMsg !== "" ? (
+            <p className={s.error}>{props.serverMsg}</p>
+          ) : (
+            <Preloader />
+          )}
+        </div>
+      );
     }
   };
 
@@ -53,30 +63,38 @@ function Select({ ...props }) {
   };
 
   return (
-    <div className={s.select} onClick={toggleList}>
-      <input
-        className={s.input}
-        id={props.name}
-        {...props}
-        disabled={true}
-        value={value}
-        ref={inputRef}
-      />
-      <img className={s.icon} src={isOpened ? arrUpIcon : arrIcon} alt="icon" />
-      <label
-        htmlFor={props.name}
-        className={s["label-input"]}
-        style={
-          value !== "" ? { fontSize: "10px", top: "4px" } : { fontSize: "14px" }
-        }
-      >
-        {props.label}
-      </label>
+    <div className={s.select}>
+      <div className={s.box} onClick={toggleList}>
+        <input
+          ref={inputRef}
+          className={s.input}
+          {...props}
+          name={props.name}
+          id={props.name}
+          value={getEventName()}
+        />
+        <img
+          className={s.icon}
+          src={isOpened ? arrUpIcon : arrIcon}
+          alt="icon"
+        />
+        <label
+          htmlFor={props.name}
+          className={s["label-input"]}
+          style={
+            value !== ""
+              ? { fontSize: "10px", top: "4px" }
+              : { fontSize: "14px" }
+          }
+        >
+          {props.label}
+        </label>
+      </div>
       <div
         className={s.labels}
         style={isOpened ? { display: "block" } : { display: "none" }}
       >
-        {renderOptions(props.events.eventsDate)}
+        {renderOptions(eventsData)}
       </div>
     </div>
   );

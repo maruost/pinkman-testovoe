@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Checkbox from "../Checkbox/Checkbox";
 import Input from "../Input/Input";
 import s from "./InfoBox.module.scss";
@@ -20,6 +20,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           isUserEntity={props.isUserEntity}
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
+          form={props.form}
         />
         <DateInput
           name="dob"
@@ -31,6 +32,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
+          form={props.form}
         />
         <Input
           name="phone"
@@ -42,6 +44,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
+          form={props.form}
         />
       </>
     );
@@ -60,6 +63,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
+          form={props.form}
         />
         <Input
           name="pos"
@@ -71,6 +75,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
+          form={props.form}
         />
         <Input
           name="phone"
@@ -82,6 +87,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
+          form={props.form}
         />
       </>
     );
@@ -98,14 +104,17 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
     return (
       <>
         <Select
-          label="Дата мероприятия"
-          type="text"
+          label="День мероприятия"
+          type="select"
           name="eventId"
           onHandleInputChange={onHandleInputChange}
           isUserEntity={props.isUserEntity}
           events={props.events}
           inputValues={props.inputValues}
           blocked={props.isInputBlocked}
+          serverMsg={props.serverMsg}
+          form={props.form}
+          required
         />
         <Checkbox
           name="opt1"
@@ -116,6 +125,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           errors={errors}
           inputValues={props.inputValues}
           disabled={props.isInputBlocked}
+          form={props.form}
         />
         <Checkbox
           name="opt2"
@@ -126,6 +136,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           errors={errors}
           inputValues={props.inputValues}
           disabled={props.isInputBlocked}
+          form={props.form}
         />
         <Checkbox
           name="opt3"
@@ -136,6 +147,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           errors={errors}
           inputValues={props.inputValues}
           disabled={props.isInputBlocked}
+          form={props.form}
         />
       </>
     );

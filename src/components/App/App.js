@@ -4,6 +4,7 @@ import s from "./App.module.scss";
 import WelcomeBoard from "../WelcomeBoard/WeclomeBoard";
 import Questionary from "../Questionary/Questionary";
 import AuthPage from "../AuthPage/AuthPage";
+import Result from "../Result/Result";
 
 function App() {
   // const [isUserEntity, setisUserEntity] = useState(false);
@@ -30,6 +31,15 @@ function App() {
           {loggedIn ? (
             <WelcomeBoard>
               <Questionary />
+            </WelcomeBoard>
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+        <Route path="/result">
+          {loggedIn ? (
+            <WelcomeBoard>
+              <Result />
             </WelcomeBoard>
           ) : (
             <Redirect to="/login" />

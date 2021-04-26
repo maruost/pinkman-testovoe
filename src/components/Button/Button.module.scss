@@ -1,10 +1,14 @@
 .button {
-  padding: 8px 24px;
+  font-family: PT-Root;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 24px 10px;
   color: #fff;
   background-color: #ab81f1;
   border-radius: 14px;
   border: none;
   cursor: pointer;
+  line-height: 1;
   &:active,
   :focus {
     background-color: #8852e1;
@@ -16,4 +20,10 @@
 .inactive {
   background-color: rgba(255, 255, 255, 0.2);
   color: #676c7a;
+  &:active,
+  :focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: none;
+    border: none;
+  }
 }

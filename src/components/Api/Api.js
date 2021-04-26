@@ -1,5 +1,3 @@
-import React from "react";
-
 function Api() {
   const checkStatus = (res) => {
     if (!res.ok) {

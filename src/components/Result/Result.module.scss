@@ -1,0 +1,52 @@
+$font-stack: Halvar, Arial, Helvetica, sans-serif;
+$font-big: 28px;
+$primary-color: #fff;
+$max-width: 680px;
+
+.main {
+  max-width: $max-width;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+}
+
+.subtitle {
+  font-family: $font-stack;
+  font-size: $font-big;
+  font-weight: 200;
+  color: $primary-color;
+  text-align: center;
+  margin: 0 0;
+}
+
+.box {
+  margin-top: 40px;
+  width: 336px;
+  padding: 28px 24px;
+  background-color: #101328;
+  border-radius: 14px;
+  margin-bottom: 38px;
+}
+
+.wrapper {
+  margin-bottom: 16px;
+}
+
+.section {
+  font-family: PT-Root;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.5;
+  margin: 0 0;
+  margin-bottom: 2px;
+}
+
+.info {
+  font-family: PT-Root;
+  font-size: 14px;
+  color: #fff;
+  margin: 0 0;
+}

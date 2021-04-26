@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import s from "./Questionary.module.scss";
 import Slider from "../Slider/Slider";
 import InfoBox from "../InfoBox/InfoBox";
@@ -6,15 +7,25 @@ import Button from "../Button/Button";
 import FormValidator from "../FormValidator/FormValidator";
 import Api from "../Api/Api";
 import Preloader from "../Preloader/Preloader";
+import serverError from "../constants/serverMessages";
+import { useData } from "../DataContext/DataContext";
 
 function Questionary({ ...props }) {
   const [isUserEntity, setisUserEntity] = useState(false);
   const [inputValues, setInputValues] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const [events, setEvents] = useState({});
   const [isInputBlocked, setIsInputBlocked] = useState(false);
-  const { setErrorMessage, errors } = FormValidator();
+  const {
+    setErrorMessage,
+    errors,
+    isFormValid,
+    checkFormValidity,
+  } = FormValidator();
+  const [serverMsg, setServerMsg] = useState({ data: "", request: "" });
   const { getEvents, sendRequest } = Api();
+  const { setValues } = useData();
+  const history = useHistory();
 
   useEffect(() => {
     setEvents({});
@@ -23,7 +34,15 @@ function Questionary({ ...props }) {
         console.log(data);
         setEvents(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = serverError(err);
+        setServerMsg({ ...serverMsg, data: error });
+        console.log(serverMsg.data);
+        if (err === 403) {
+          localStorage.removeItem("token");
+          history.push("/login");
+        }
+      });
   }, []);
 
   const handleUserType = (input) => {
@@ -36,16 +55,23 @@ function Questionary({ ...props }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputValues);
+    console.log("submit", inputValues);
     setIsInputBlocked(true);
     sendRequest(inputValues)
       .then((res) => {
         console.log(res);
         setIsInputBlocked(false);
+        setValues({ ...inputValues, status: isUserEntity });
+        history.push("/result");
       })
       .catch((err) => {
         setIsInputBlocked(false);
-        console.log(err);
+        const error = serverError(err);
+        setServerMsg({ ...serverMsg, request: error });
+        if (err === 403) {
+          localStorage.removeItem("token");
+          history.push("/login");
+        }
       });
   };
 
@@ -54,15 +80,22 @@ function Questionary({ ...props }) {
       ...inputValues,
       [target.name]: value,
     });
-    setErrorMessage(target, target.name);
-    setIsValid(formRef.current.checkValidity());
+    setErrorMessage(target, value, target.name);
+    const validation = checkFormValidity(formRef.current, isFormValid);
+    console.log(validation);
+    setIsValid(validation);
   };
 
   return (
     <div className={s.main}>
       <h3 className={s.subtitle}>Заполните анкету участника</h3>
       <Slider onHandleUserType={handleUserType} isUserEntity={isUserEntity} />
-      <form ref={formRef} className={s.form} onSubmit={handleSubmit}>
+      <form
+        ref={formRef}
+        id="questions"
+        className={s.form}
+        onSubmit={handleSubmit}
+      >
         <div className={s.container}>
           <InfoBox
             title="Личная информация"
@@ -72,8 +105,8 @@ function Questionary({ ...props }) {
             errors={errors}
             inputValues={inputValues}
             isInputBlocked={isInputBlocked}
+            form="questions"
           />
-          <span className={s.line} />
           <InfoBox
             title="Выберите дату мероприятия"
             type="event"
@@ -83,12 +116,18 @@ function Questionary({ ...props }) {
             inputValues={inputValues}
             events={events}
             isInputBlocked={isInputBlocked}
+            serverMsg={serverMsg.data}
+            form="questions"
           />
         </div>
-        {isInputBlocked ? <Preloader /> : null}
         <Button type="submit" isValid={isValid} isBlocked={isInputBlocked}>
           {isInputBlocked ? "Идёт отправка..." : "Отправить заявку"}
         </Button>
+        {isInputBlocked ? (
+          <Preloader />
+        ) : (
+          <p className={s.error}>{serverMsg.request}</p>
+        )}
       </form>
     </div>
   );

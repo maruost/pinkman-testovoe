@@ -18,7 +18,9 @@ function Input({ ...props }) {
           className={s.input}
           onChange={handleChange}
           id={props.name}
-          value={props.inputValues[props.name]}
+          value={
+            props.inputValues[props.name] ? props.inputValues[props.name] : ""
+          }
         />
         <label htmlFor={props.name} className={s["label-input"]}>
           {props.label}
