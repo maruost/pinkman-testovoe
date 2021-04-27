@@ -29,6 +29,12 @@
     border-width: thin;
     cursor: pointer;
   }
+  &:focus {
+    border: 1px solid #ab81f1;
+  }
+  &:focus +.label-input{
+    color: #ab81f1;
+  }
 }
 
 .icon {

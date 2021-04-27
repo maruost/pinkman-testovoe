@@ -2,7 +2,6 @@ import React from "react";
 import Checkbox from "../Checkbox/Checkbox";
 import Input from "../Input/Input";
 import s from "./InfoBox.module.scss";
-import Select from "../Select/Select";
 import DateInput from "../DateInput/DateInput";
 import SelectRadio from "../SelectRadio/SelectRadio";
 
@@ -42,10 +41,11 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           onHandleInputChange={onHandleInputChange}
           errors={errors}
           isUserEntity={props.isUserEntity}
-          required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
           form={props.form}
+          pattern="^(((\+\d)|\d)\s?((\(\d{3}\))|\d{3})[\s|\-]?\d{3}[\s|\-]?\d{2}[\s|\-]?\d{2})"
+          required={true}
         />
       </>
     );
@@ -61,10 +61,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           onHandleInputChange={onHandleInputChange}
           errors={errors}
           isUserEntity={props.isUserEntity}
-          required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
           form={props.form}
+          required={true}
         />
         <Input
           name="pos"
@@ -73,10 +73,10 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           onHandleInputChange={onHandleInputChange}
           errors={errors}
           isUserEntity={props.isUserEntity}
-          required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
           form={props.form}
+          required={true}
         />
         <Input
           name="phone"
@@ -85,10 +85,11 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           onHandleInputChange={onHandleInputChange}
           errors={errors}
           isUserEntity={props.isUserEntity}
-          required
           disabled={props.isInputBlocked}
           inputValues={props.inputValues}
           form={props.form}
+          pattern="^(((\+\d)|\d)\s?((\(\d{3}\))|\d{3})[\s|\-]?\d{3}[\s|\-]?\d{2}[\s|\-]?\d{2})"
+          required={true}
         />
       </>
     );
@@ -114,7 +115,8 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           blocked={props.isInputBlocked}
           serverMsg={props.serverMsg}
           form={props.form}
-          required
+          errors={errors}
+          required={true}
         />
         <Checkbox
           name="opt1"

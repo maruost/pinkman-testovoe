@@ -4,8 +4,8 @@ import s from "./Checkbox.module.scss";
 function Checkbox({ ...props }) {
   const handleChange = (e) => {
     props.onHandleInputChange(e.target, {
-      option: props.label,
       [props.name]: Number(e.target.checked),
+      option: props.label,
     });
   };
 
@@ -19,7 +19,7 @@ function Checkbox({ ...props }) {
         checked={
           props.inputValues[props.name]
             ? props.inputValues[props.name][props.name]
-            : ""
+            : 0
         }
       />
       <label htmlFor={props.name} className={s.label}>

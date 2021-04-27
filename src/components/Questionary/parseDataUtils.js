@@ -2,7 +2,7 @@ export const initialDataUser = {
   name: "",
   dob: "",
   phone: "",
-  eventId: "",
+  eventId: { eventId: "", label: "" },
   opt1: { opt1: 0, option: "" },
   opt2: { opt2: 0, option: "" },
   opt3: { opt3: 0, option: "" },

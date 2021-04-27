@@ -20,7 +20,7 @@ function Questionary({ ...props }) {
   const [inputValues, setInputValues] = useState(
     isUserEntity ? initialDataEntity : initialDataUser
   );
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
   const [events, setEvents] = useState({});
   const [isInputBlocked, setIsInputBlocked] = useState(false);
   const {
@@ -39,13 +39,11 @@ function Questionary({ ...props }) {
     setEvents({});
     getEvents()
       .then((data) => {
-        console.log(data);
         setEvents(data);
       })
       .catch((err) => {
         const error = serverError(err);
         setServerMsg({ ...serverMsg, data: error });
-        console.log(serverMsg.data);
         if (err === 403) {
           localStorage.removeItem("token");
           history.push("/login");
@@ -56,15 +54,15 @@ function Questionary({ ...props }) {
   const handleUserType = (input) => {
     setisUserEntity(input);
     formRef.current.reset();
-    setInputValues({});
+    setInputValues(isUserEntity ? initialDataEntity : initialDataUser);
+    console.log(inputValues);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit", inputValues);
     setIsInputBlocked(true);
     const reqData = parseDataToSend(inputValues, isUserEntity);
-    console.log(reqData, "datatosend");
+    // console.log(reqData, "datatosend");
     sendRequest(reqData)
       .then((res) => {
         console.log(res);
@@ -88,9 +86,8 @@ function Questionary({ ...props }) {
       ...inputValues,
       [target.name]: value,
     });
-    setErrorMessage(target, value, target.name);
+    setErrorMessage(target, target.name);
     const validation = checkFormValidity(formRef.current, isFormValid);
-    console.log(validation);
     setIsValid(validation);
   };
 

@@ -1,9 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import s from "./Input.module.scss";
-import {
-  isPossibleNumber,
-  parsePhoneNumberFromString,
-} from "libphonenumber-js";
 
 function Input({ ...props }) {
   const handleChange = (e) => {
