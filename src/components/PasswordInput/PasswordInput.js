@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import s from "./PasswordInput.module.scss";
 import eyeActive from "../../static/images/icons/eye-active.svg";
 import eyeInActive from "../../static/images/icons/eye-inactive.svg";
@@ -8,6 +8,8 @@ function PasswordInput({ ...props }) {
   const [isShown, setIsShown] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [icon, setIcon] = useState(eyeInActive);
+  const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState("");
 
   const toggleIcon = () => {
     if (isEmpty) {
@@ -26,6 +28,7 @@ function PasswordInput({ ...props }) {
     e.target.value === "" ? setIsEmpty(true) : setIsEmpty(false);
     toggleIcon();
     props.onHandleInputChange(e.target, e.target.value);
+    setValue(e.target.value);
   };
 
   const showPassword = () => {
@@ -38,6 +41,29 @@ function PasswordInput({ ...props }) {
     }
   };
 
+  const changeFieldStyle = () => {
+    const style = {
+      fontSize: "",
+      top: "",
+      color: "",
+    };
+    if (value) {
+      style.fontSize = "10px";
+      style.top = "4px";
+    } else {
+      style.fontSize = "14px";
+      style.top = "11px";
+    }
+    if (isFocused) {
+      style.color = "#AB81F1";
+      style.fontSize = "10px";
+      style.top = "4px";
+    } else {
+      style.color = "#676C7A";
+    }
+    return style;
+  };
+
   return (
     <div className={s.box}>
       <div className={s["input-box"]}>
@@ -47,7 +73,9 @@ function PasswordInput({ ...props }) {
           className={s.input}
           onChange={handleChange}
           id={props.name}
+          onFocus={() => setIsFocused(true)}
           onBlur={() => {
+            setIsFocused(false);
             setIsShown(false);
           }}
         />
@@ -57,7 +85,11 @@ function PasswordInput({ ...props }) {
           alt="eye-icon"
           onClick={showPassword}
         />
-        <label htmlFor={props.name} className={s["label-input"]}>
+        <label
+          htmlFor={props.name}
+          className={s["label-input"]}
+          style={changeFieldStyle()}
+        >
           {props.label}
         </label>
       </div>

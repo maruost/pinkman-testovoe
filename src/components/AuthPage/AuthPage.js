@@ -11,8 +11,8 @@ import serverError from "../constants/serverMessages";
 
 function AuthPage({ ...props }) {
   const initialData = {
-    username: "",
-    password: "",
+    username: "user@example.com",
+    password: "user8952",
   };
   const formRef = useRef(null);
   const [inputValues, setInputValues] = useState(initialData);

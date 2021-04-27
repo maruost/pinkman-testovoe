@@ -8,7 +8,7 @@ import SelectRadio from "../SelectRadio/SelectRadio";
 function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setIndividualFields = () => {
     return (
-      <>
+      <div className={s.inputs}>
         <Input
           name="name"
           label="ФИО"
@@ -47,13 +47,13 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           pattern="^(((\+\d)|\d)\s?((\(\d{3}\))|\d{3})[\s|\-]?\d{3}[\s|\-]?\d{2}[\s|\-]?\d{2})"
           required={true}
         />
-      </>
+      </div>
     );
   };
 
   const setEntityFields = () => {
     return (
-      <>
+      <div className={s.inputs}>
         <Input
           name="cName"
           label="Название компании"
@@ -91,7 +91,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           pattern="^(((\+\d)|\d)\s?((\(\d{3}\))|\d{3})[\s|\-]?\d{3}[\s|\-]?\d{2}[\s|\-]?\d{2})"
           required={true}
         />
-      </>
+      </div>
     );
   };
   const setUserFields = () => {
@@ -104,7 +104,7 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
 
   const setEventFields = () => {
     return (
-      <>
+      <div className={s.inputs}>
         <SelectRadio
           label="День мероприятия"
           name="eventId"
@@ -151,15 +151,13 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
           disabled={props.isInputBlocked}
           form={props.form}
         />
-      </>
+      </div>
     );
   };
   return (
     <div className={s.main}>
       <h3 className={s.title}>{props.title}</h3>
-      <div className={s.inputs}>
-        {props.type === "user-info" ? setUserFields() : setEventFields()}
-      </div>
+      {props.type === "user-info" ? setUserFields() : setEventFields()}
     </div>
   );
 }
