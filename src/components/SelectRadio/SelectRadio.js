@@ -42,7 +42,7 @@ function SelectRadio({ ...props }) {
     if (data) {
       const arr = data.map((input) => {
         return (
-          <div className={s.wrapper}>
+          <div className={s.wrapper} key={input.id}>
             <input
               type="radio"
               id={input.id}

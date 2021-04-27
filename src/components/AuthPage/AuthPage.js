@@ -25,7 +25,6 @@ function AuthPage({ ...props }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputValues);
     setIsInputBlocked(true);
     signin(inputValues)
       .then((data) => {

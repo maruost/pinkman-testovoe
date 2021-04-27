@@ -13,13 +13,10 @@ function PasswordInput({ ...props }) {
 
   const toggleIcon = () => {
     if (isEmpty) {
-      console.log("empty");
       setIcon(eyeInActive);
     } else if (isShown) {
-      console.log("shown");
       setIcon(eyeClosed);
     } else {
-      console.log("unshown");
       setIcon(eyeActive);
     }
   };
@@ -68,11 +65,12 @@ function PasswordInput({ ...props }) {
     <div className={s.box}>
       <div className={s["input-box"]}>
         <input
-          {...props}
+          name={props.name}
           type={isShown ? "text" : "password"}
           className={s.input}
           onChange={handleChange}
           id={props.name}
+          required={props.required}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
             setIsFocused(false);

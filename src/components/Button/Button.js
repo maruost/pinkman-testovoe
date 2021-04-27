@@ -9,9 +9,18 @@ function Button({ ...props }) {
           ? s.button
           : `${s.button} ${s.inactive}`
       }
-      disabled={props.isValid && !props.isBlocked ? false : true}
-      {...props}
-    ></button>
+      disabled={
+        !props.disabled
+          ? props.disabled
+          : props.isValid && !props.isBlocked
+          ? false
+          : true
+      }
+      type={props.type}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </button>
   );
 }
 

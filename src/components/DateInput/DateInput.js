@@ -10,7 +10,10 @@ function DateInput({ ...props }) {
     <div className={s.box}>
       <div className={s["input-box"]}>
         <input
-          {...props}
+          name={props.name}
+          type={props.type}
+          required={props.required}
+          disabled={props.disabled}
           className={s.input}
           onChange={handleChange}
           id={props.name}

@@ -7,18 +7,15 @@ import AuthPage from "../AuthPage/AuthPage";
 import Result from "../Result/Result";
 
 function App() {
-  // const [isUserEntity, setisUserEntity] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
     localStorage.getItem("token") ? setLoggedIn(true) : setLoggedIn(false);
-    history.push("/questionary");
+    if (loggedIn) {
+      history.push("/questionary");
+    }
   }, []);
-
-  // const handleUserType = (input) => {
-  //   setisUserEntity(input);
-  // };
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -46,9 +43,13 @@ function App() {
           )}
         </Route>
         <Route path="/login">
-          <WelcomeBoard>
-            <AuthPage handleLogin={handleLogin} />
-          </WelcomeBoard>
+          {loggedIn ? (
+            <Redirect to="/questionary" />
+          ) : (
+            <WelcomeBoard>
+              <AuthPage handleLogin={handleLogin} />
+            </WelcomeBoard>
+          )}
         </Route>
         <Route>
           {loggedIn ? <Redirect to="/questionary" /> : <Redirect to="/login" />}

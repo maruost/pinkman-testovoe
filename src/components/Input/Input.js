@@ -10,13 +10,18 @@ function Input({ ...props }) {
     <div className={s.box}>
       <div className={s["input-box"]}>
         <input
-          {...props}
+          name={props.name}
+          type={props.type}
+          required={props.required}
+          minLength={props.minLength}
+          disabled={props.disabled}
           className={s.input}
           onChange={handleChange}
           id={props.name}
           value={
             props.inputValues[props.name] ? props.inputValues[props.name] : ""
           }
+          pattern={props.pattern}
         />
         <label htmlFor={props.name} className={s["label-input"]}>
           {props.label}

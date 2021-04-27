@@ -55,17 +55,14 @@ function Questionary({ ...props }) {
     setisUserEntity(input);
     formRef.current.reset();
     setInputValues(isUserEntity ? initialDataEntity : initialDataUser);
-    console.log(inputValues);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsInputBlocked(true);
     const reqData = parseDataToSend(inputValues, isUserEntity);
-    // console.log(reqData, "datatosend");
     sendRequest(reqData)
       .then((res) => {
-        console.log(res);
         setIsInputBlocked(false);
         setValues({ ...inputValues, status: isUserEntity });
         history.push("/result");

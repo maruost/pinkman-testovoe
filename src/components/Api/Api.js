@@ -1,7 +1,6 @@
 function Api() {
   const checkStatus = (res) => {
     if (!res.ok) {
-      console.log(res);
       return Promise.reject(res.status);
     } else {
       return res.json();

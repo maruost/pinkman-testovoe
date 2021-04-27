@@ -12,9 +12,11 @@ function Checkbox({ ...props }) {
   return (
     <div className={s.box}>
       <input
-        {...props}
+      name={props.name}
         className={s.checkbox}
         onChange={handleChange}
+        type={props.type}
+        disabled={props.disabled}
         id={props.name}
         checked={
           props.inputValues[props.name]

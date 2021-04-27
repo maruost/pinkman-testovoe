@@ -8,7 +8,6 @@ import ResultTextBox from "../ResultTextBox/ResultTextBox";
 function Result() {
   const { data } = useData();
   const history = useHistory();
-  console.log("контекст", data);
 
   const renderFieldsByStatus = (status) => {
     if (status) {
@@ -47,6 +46,7 @@ function Result() {
         type="button"
         disabled={false}
         onClick={() => {
+          "click";
           history.push("/questionary");
         }}
       >
