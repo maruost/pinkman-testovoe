@@ -30,9 +30,9 @@ function Result() {
         </div>
         <div className={s.wrapper}>
           <p className={s.section}>Опции</p>
-          <p className={s.info}>{data.opt1 ? data.opt1.option : ""}</p>
-          <p className={s.info}>{data.opt2 ? data.opt2.option : ""}</p>
-          <p className={s.info}>{data.opt3 ? data.opt3.option : ""}</p>
+          <p className={s.info}>{data.opt1.opt1 ? data.opt1.option : ""}</p>
+          <p className={s.info}>{data.opt2.opt2 ? data.opt2.option : ""}</p>
+          <p className={s.info}>{data.opt3.opt3 ? data.opt3.option : ""}</p>
         </div>
       </div>
       <Button

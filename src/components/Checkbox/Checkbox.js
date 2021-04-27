@@ -16,7 +16,11 @@ function Checkbox({ ...props }) {
         className={s.checkbox}
         onChange={handleChange}
         id={props.name}
-        checked={!!props.inputValues[props.name]}
+        checked={
+          props.inputValues[props.name]
+            ? props.inputValues[props.name][props.name]
+            : ""
+        }
       />
       <label htmlFor={props.name} className={s.label}>
         {props.label}

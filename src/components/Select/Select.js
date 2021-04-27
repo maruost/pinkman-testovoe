@@ -6,7 +6,9 @@ import Preloader from "../Preloader/Preloader";
 
 function Select({ ...props }) {
   const [value, setValue] = useState("");
+  const [id, setEventId] = useState("");
   const [isOpened, setIsOpened] = useState(false);
+  const [display, setDisplay] = useState("none");
   const inputRef = useRef();
 
   const eventsData = props.events.eventsDate;
@@ -22,13 +24,18 @@ function Select({ ...props }) {
   };
 
   const handleClick = (e) => {
+    console.log(e.target);
     setValue(e.target.textContent);
-    props.onHandleInputChange(inputRef.current, {
-      [props.name]: e.target.id,
-      label: e.target.textContent,
+    setEventId(e.target.id);
+    hideList();
+  };
+
+  const handleFocus = (e) => {
+    console.log("focus-pokus");
+    props.onHandleInputChange(e.target, {
+      [props.name]: id,
+      label: value,
     });
-    setIsOpened(!isOpened);
-    inputRef.current.blur();
   };
 
   const renderOptions = (data) => {
@@ -59,7 +66,19 @@ function Select({ ...props }) {
   };
 
   const toggleList = () => {
-    return props.blocked ? null : setIsOpened(!isOpened);
+    if (props.blocked) {
+      return null;
+    } else {
+      setIsOpened(!isOpened);
+      console.log(isOpened);
+      isOpened ? setDisplay("block") : setDisplay("none");
+      console.log(display);
+    }
+  };
+
+  const hideList = () => {
+    setIsOpened(false);
+    setDisplay("none");
   };
 
   return (
@@ -72,6 +91,9 @@ function Select({ ...props }) {
           name={props.name}
           id={props.name}
           value={getEventName()}
+          onChange={() => console.log("select input change")}
+          onFocus={handleFocus}
+          onBlur={hideList}
         />
         <img
           className={s.icon}

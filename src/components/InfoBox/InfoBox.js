@@ -4,6 +4,7 @@ import Input from "../Input/Input";
 import s from "./InfoBox.module.scss";
 import Select from "../Select/Select";
 import DateInput from "../DateInput/DateInput";
+import SelectRadio from "../SelectRadio/SelectRadio";
 
 function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setIndividualFields = () => {
@@ -103,9 +104,8 @@ function InfoBox({ onHandleInputChange, errors, ...props }) {
   const setEventFields = () => {
     return (
       <>
-        <Select
+        <SelectRadio
           label="День мероприятия"
-          type="select"
           name="eventId"
           onHandleInputChange={onHandleInputChange}
           isUserEntity={props.isUserEntity}

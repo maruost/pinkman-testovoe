@@ -10,8 +10,12 @@ import Preloader from "../Preloader/Preloader";
 import serverError from "../constants/serverMessages";
 
 function AuthPage({ ...props }) {
+  const initialData = {
+    username: "",
+    password: "",
+  };
   const formRef = useRef(null);
-  const [inputValues, setInputValues] = useState({});
+  const [inputValues, setInputValues] = useState(initialData);
   const [isValid, setIsValid] = useState(false);
   const { setErrorMessage, errors } = FormValidator();
   const history = useHistory();
@@ -58,6 +62,7 @@ function AuthPage({ ...props }) {
             onHandleInputChange={handleInputChange}
             required
             blocked={isInputBlocked}
+            inputValues={inputValues}
           />
           <PasswordInput
             type="password"
@@ -66,6 +71,7 @@ function AuthPage({ ...props }) {
             onHandleInputChange={handleInputChange}
             required
             blocked={isInputBlocked}
+            inputValues={inputValues}
           />
         </div>
         <Button type="submit" isValid={isValid} isBlocked={isInputBlocked}>

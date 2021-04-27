@@ -9,10 +9,17 @@ import Api from "../Api/Api";
 import Preloader from "../Preloader/Preloader";
 import serverError from "../constants/serverMessages";
 import { useData } from "../DataContext/DataContext";
+import {
+  initialDataUser,
+  initialDataEntity,
+  parseDataToSend,
+} from "./parseDataUtils";
 
 function Questionary({ ...props }) {
   const [isUserEntity, setisUserEntity] = useState(false);
-  const [inputValues, setInputValues] = useState({});
+  const [inputValues, setInputValues] = useState(
+    isUserEntity ? initialDataEntity : initialDataUser
+  );
   const [isValid, setIsValid] = useState(true);
   const [events, setEvents] = useState({});
   const [isInputBlocked, setIsInputBlocked] = useState(false);
@@ -25,6 +32,7 @@ function Questionary({ ...props }) {
   const [serverMsg, setServerMsg] = useState({ data: "", request: "" });
   const { getEvents, sendRequest } = Api();
   const { setValues } = useData();
+  const formRef = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -51,13 +59,13 @@ function Questionary({ ...props }) {
     setInputValues({});
   };
 
-  const formRef = useRef(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit", inputValues);
     setIsInputBlocked(true);
-    sendRequest(inputValues)
+    const reqData = parseDataToSend(inputValues, isUserEntity);
+    console.log(reqData, "datatosend");
+    sendRequest(reqData)
       .then((res) => {
         console.log(res);
         setIsInputBlocked(false);
