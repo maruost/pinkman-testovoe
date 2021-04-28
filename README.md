@@ -1,4 +1,6 @@
 ## Форма по макету с использованием React.
+#### preview: 
+![me](https://github.com/maruost/pinkman-testovoe/blob/main/readme/preview_test.gif)
 
 ### В данном проекте реализованы: 
 #### верстка формы по макету с использованием React:
