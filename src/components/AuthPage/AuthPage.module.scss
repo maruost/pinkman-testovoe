@@ -18,7 +18,7 @@ $max-width: 680px;
   justify-content: space-between;
   flex-direction: column;
   width: 288px;
-  margin-bottom: 24px;
+  margin-bottom: 38px;
 }
 
 .subtitle {
@@ -41,10 +41,22 @@ $max-width: 680px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 315px;
+  width: 100%;
 }
 
 .error {
   color: #f6483d;
   text-align: center;
+}
+
+@media screen and (max-width: 840px) {
+  .main {
+    margin-top: 70px;
+  }
+  .subtitle {
+    margin-bottom: 38px;
+  }
+  .container {
+    margin-bottom: 32px;
+  }
 }

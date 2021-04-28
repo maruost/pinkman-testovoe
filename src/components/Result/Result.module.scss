@@ -19,11 +19,10 @@ $max-width: 336px;
   font-weight: 200;
   color: $primary-color;
   text-align: center;
-  margin: 0 0;
+  margin: 0 0 40px 0;
 }
 
 .box {
-  margin-top: 40px;
   width: 336px;
   padding: 28px 24px;
   background-color: #101328;
@@ -50,4 +49,16 @@ $max-width: 336px;
   font-size: 14px;
   color: #fff;
   margin: 0 0;
+}
+
+@media screen and (max-width: 840px) {
+  .main {
+    margin-top: 70px;
+  }
+  .subtitle {
+    margin-bottom: 38px;
+  }
+  .container {
+    margin-bottom: 32px;
+  }
 }

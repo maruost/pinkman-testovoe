@@ -5,19 +5,25 @@ $max-width: 680px;
 
 .main {
   max-width: $max-width;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 120px;
 }
 
 .container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 60px;
   margin-bottom: 40px;
-  :first-child {
+  > :first-child {
     border-left: none;
+    padding-left: 0px;
+  }
+  > :last-child {
+    padding-right: 0px;
   }
 }
 
@@ -27,6 +33,9 @@ $max-width: 680px;
   font-weight: 200;
   color: $primary-color;
   text-align: center;
+  margin: 0 0;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
 }
 
 .line {
@@ -35,6 +44,7 @@ $max-width: 680px;
 }
 
 .form {
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -43,4 +53,21 @@ $max-width: 680px;
 
 .error {
   color: #f6483d;
+}
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-top: 38px;
+    flex-direction: column;
+    > :first-child {
+      padding-top: 0px;
+    }
+    > :last-child {
+      padding-bottom: 0px;
+      border-bottom: none;
+    }
+  }
+  .main {
+    margin-top: 70px;
+  }
 }

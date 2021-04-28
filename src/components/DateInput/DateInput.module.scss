@@ -55,24 +55,6 @@
   left: 12px;
 }
 
-.label {
-  color: #fff;
-  width: 350px;
-  display: inline-flex;
-  align-items: center;
-  user-select: none;
-  font-size: 16px;
-  &::before {
-    content: "";
-    margin-right: 16px;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #676c7a;
-    border-radius: 2px;
-  }
-  cursor: pointer;
-}
 
 .error {
   display: block;

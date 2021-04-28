@@ -6,6 +6,9 @@ $max-width: 680px;
   max-width: $max-width;
   margin-top: 40px;
   background-color: #06091f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -13,5 +16,16 @@ $max-width: 680px;
   font-family: $font-stack;
   font-weight: 500;
   font-size: 53px;
-  margin: 0 auto;
+  margin: 0 0;
+}
+
+
+@media screen and (max-width: 750px) {
+  .title {
+    font-size: 30px;
+  }
+
+  .board {
+    margin-bottom: 100px;
+  }
 }

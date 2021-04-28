@@ -1,10 +1,12 @@
+$main-width: 680px;
+$max-width: 350px;
+
 .main {
-  max-width: 330px;
-  margin-top: 60px;
-  width: 288px;
+  width: calc(#{$max-width / $main-width} * 100%);
   padding-left: 36px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding-right: 36px;
+  box-sizing: border-box;
 }
 
 .title {
@@ -17,4 +19,16 @@
 
 .inputs {
   margin-top: 16px;
+}
+
+@media screen and (max-width: 840px) {
+  .main {
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 }

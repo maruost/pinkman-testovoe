@@ -78,13 +78,16 @@ function SelectRadio({ ...props }) {
       fontSize: "",
       paddingTop: "",
       color: "",
+      fontWeight: 400,
     };
     if (value) {
       style.fontSize = "10px";
       style.paddingTop = "0px";
+      style.fontWeight = 700;
     } else {
       style.fontSize = "14px";
       style.paddingTop = "6px";
+      style.fontWeight = 400;
     }
     if (isListOpened) {
       style.color = "#AB81F1";
