@@ -43,18 +43,22 @@ function PasswordInput({ ...props }) {
       fontSize: "",
       top: "",
       color: "",
+      fontWeight: 400,
     };
     if (value) {
       style.fontSize = "10px";
       style.top = "4px";
+      style.fontWeight = 700;
     } else {
       style.fontSize = "14px";
       style.top = "11px";
+      style.fontWeight = 400;
     }
     if (isFocused) {
       style.color = "#AB81F1";
       style.fontSize = "10px";
       style.top = "4px";
+      style.fontWeight = 700;
     } else {
       style.color = "#676C7A";
     }
@@ -76,10 +80,11 @@ function PasswordInput({ ...props }) {
             setIsFocused(false);
             setIsShown(false);
           }}
+          disabled={props.disabled}
         />
         <img
           className={s.icon}
-          src={isEmpty ? eyeInActive : icon}
+          src={props.disabled ? eyeInActive : isEmpty ? eyeInActive : icon}
           alt="eye-icon"
           onClick={showPassword}
         />

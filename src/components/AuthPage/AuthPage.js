@@ -60,7 +60,7 @@ function AuthPage({ ...props }) {
             label="E-mail"
             onHandleInputChange={handleInputChange}
             required
-            blocked={isInputBlocked}
+            disabled={isInputBlocked}
             inputValues={inputValues}
           />
           <PasswordInput
@@ -69,7 +69,7 @@ function AuthPage({ ...props }) {
             label="Пароль"
             onHandleInputChange={handleInputChange}
             required
-            blocked={isInputBlocked}
+            disabled={isInputBlocked}
             inputValues={inputValues}
           />
         </div>
